@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
-    <link rel="stylesheet" href="assets/css/style.css"/>
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
 </head>
 
 
@@ -21,9 +21,9 @@
         <h2>O nas</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt libero
             optio esse quisquam illo omnis.</p>
-        <img src="images/signature.svg" class="about-us--text-signature" alt="Signature"/>
+        <img th:src="@{/images/signature.svg}" class="about-us--text-signature" alt="Signature"/>
     </div>
-    <div class="about-us--image"><img src="images/about-us.jpg" alt="People in circle"/></div>
+    <img th:src="@{/images/about-us.jpg}" alt="People in circle"/>
 </section>
 
 <section id="help" class="help">
@@ -66,10 +66,10 @@
 
 </section>
 
-<!--FOOTER-->
-<div th:insert="~{fragments/footer :: footer}"></div>
-<!--FOOTER ENDED-->
+<!--&lt;!&ndash;FOOTER&ndash;&gt;-->
+<!--<div th:insert="~{fragments/footer :: footer}"></div>-->
+<!--&lt;!&ndash;FOOTER ENDED&ndash;&gt;-->
 
-<script src="assets/js/app.js"></script>
+<script th:src="@{/assets/js/app.js}"></script>
 </body>
 </html>
