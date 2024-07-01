@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+
+
+<body>
+
+<!--  HEADER -->
+<div th:insert="~{fragments/header :: header}"></div>
+<!--HEADER ENDED-->
+
+
+<section id="about-us" class="about-us">
+    <div class="about-us--text">
+        <h2>O nas</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt libero
+            optio esse quisquam illo omnis.</p>
+        <img src="images/signature.svg" class="about-us--text-signature" alt="Signature"/>
+    </div>
+    <div class="about-us--image"><img src="images/about-us.jpg" alt="People in circle"/></div>
+</section>
+
+<section id="help" class="help">
+    <h2>Komu pomagamy?</h2>
+
+    <!-- SLIDE 1 -->
+    <div class="help--slides active" data-id="1">
+        <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
+            Możesz sprawdzić czym się zajmują.</p>
+
+        <ul class="help--slides-items">
+            <li>
+                <div class="col">
+                    <div class="title">Fundacja "Dbam o Zdrowie"</div>
+                    <div class="subtitle">Cel i misja: Pomoc dzieciom z ubogich rodzin.</div>
+                </div>
+
+                <div class="col">
+                    <div class="title">Fundacja "A kogo"</div>
+                    <div class="subtitle">Cel i misja: Pomoc wybudzaniu dzieci ze śpiączki.</div>
+                </div>
+            </li>
+
+            <li>
+                <div class="col">
+                    <div class="title">Fundacja “Dla dzieci"</div>
+                    <div class="subtitle">Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej.</div>
+                </div>
+                <div class="col">
+                    <div class="title">Fundacja “Bez domu”</div>
+                    <div class="subtitle">Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania</div>
+                </div>
+
+            </li>
+
+        </ul>
+
+
+    </div>
+
+</section>
+
+<!--FOOTER-->
+<div th:insert="~{fragments/footer :: footer}"></div>
+<!--FOOTER ENDED-->
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>
