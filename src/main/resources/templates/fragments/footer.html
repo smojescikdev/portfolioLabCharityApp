@@ -6,7 +6,7 @@
     <!-- Dodaj odpowiednie linki do stylów CSS -->
     <link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
     <!-- Dodaj odpowiednie linki do obrazków SVG -->
-    <link th:href="@{/assets/images/icon-facebook.svg}" th:href="@{/assets/images/icon-instagram.svg}"/>
+<!--    <link th:href="@{/assets/images/icon-facebook.svg}" th:href="@{/assets/images/icon-instagram.svg}"/>-->
 </head>
 <body>
 
@@ -15,24 +15,24 @@
         <h2>Skontaktuj się z nami</h2>
         <h3>Formularz kontaktowy</h3>
         <!-- Dodaj atrybuty th:object i th:action do formularza -->
-        <form class="form--contact" th:object="${contactForm}" th:action="@{/send-message}">
+<!--        <form class="form&#45;&#45;contact" th:object="${contactForm}" th:action="@{/send-message}">-->
             <div class="form-group form-group--50">
                 <!-- Dodaj atrybut th:field do inputów formularza -->
-                <input type="text" th:field="*{name}" placeholder="Imię"/>
+<!--                <input type="text" th:field="*{name}" placeholder="Imię"/>-->
             </div>
             <div class="form-group form-group--50">
-                <input type="text" th:field="*{surname}" placeholder="Nazwisko"/>
+<!--                <input type="text" th:field="*{surname}" placeholder="Nazwisko"/>-->
             </div>
             <div class="form-group">
                 <!-- Dodaj atrybut th:field do textarea formularza -->
-                <textarea th:field="*{message}" placeholder="Wiadomość" rows="1"></textarea>
+<!--                <textarea th:field="*{message}" placeholder="Wiadomość" rows="1"></textarea>-->
             </div>
             <button class="btn" type="submit">Wyślij</button>
         </form>
     </div>
     <div class="bottom-line">
         <!-- Użyj Thymeleaf do wstawienia aktualnego roku -->
-        <span class="bottom-line--copy" th:text="${#dates.year()}">2024</span>
+<!--        <span class="bottom-line&#45;&#45;copy" th:text="${#dates.year()}">2024</span>-->
         <div class="bottom-line--icons">
             <!-- Użyj Thymeleaf do wstawienia linków do mediów społecznościowych -->
             <a href="#" class="btn btn--small"><img th:src="@{/assets/images/icon-facebook.svg}"/></a>
