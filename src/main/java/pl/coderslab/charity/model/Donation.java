@@ -20,14 +20,11 @@ public class Donation {
 
     private Integer quantity;
 
-    //categories (lista obiektów typu Category), pamiętaj o odpowiedniej adnotacji
-    @OneToMany
+    @ManyToMany
     private List<Category> categories;
 
-    //institution (obiekt typu Institution), pamiętaj o odpowiedniej adnotacji.
     @ManyToOne
     private Institution institution;
-
 
     private String street;
     private String city;
@@ -35,6 +32,7 @@ public class Donation {
     private LocalDate pickUpDate;
     private LocalTime pickUpTime;
     private String pickUpComment;
+    private String phone;
 
 
 }

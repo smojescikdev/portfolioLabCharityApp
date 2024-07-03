@@ -25,6 +25,8 @@ public class HomeController {
     public String home(Model model) {
         //get all Institution from database
         model.addAttribute("institutions", institutionService.findAll());
+
+        //get all Quantity & Donations from database
         model.addAttribute("totalQuantity", donationService.getTotalQuantity());
         model.addAttribute("totalDonations", donationService.getTotalDonations());
         return "index";

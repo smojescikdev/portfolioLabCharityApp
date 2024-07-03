@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
 </head>
 <body>
 <header class="header--form-page">
     <nav class="container container--70">
         <ul class="nav--actions">
-            <li th:class="${isAuthenticated()} ? 'logged-user' : ''">
-                Witaj Agata
-                <ul th:if="${isAuthenticated()}" class="dropdown">
-                    <li><a href="#">Profil</a></li>
-                    <li><a href="#">Moje zbiórki</a></li>
-                    <li><a href="#">Wyloguj</a></li>
-                </ul>
-            </li>
+            <!--            <li th:class="${isAuthenticated()} ? 'logged-user' : ''">-->
+            Witaj Agata
+            <!--                <ul th:if="${isAuthenticated()}" class="dropdown">-->
+            <li><a href="#">Profil</a></li>
+            <li><a href="#">Moje zbiórki</a></li>
+            <li><a href="#">Wyloguj</a></li>
+        </ul>
+        </li>
         </ul>
 
         <ul>
@@ -78,61 +78,20 @@
         </div>
     </div>
 
+
     <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
 
-        <form action="form-confirmation.html" method="post">
+        <form th:action="@{/form-confirmation}" method="post">
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
 
-                <div class="form-group form-group--checkbox">
+                <div th:each="category : ${category}" class="form-group form-group--checkbox">
                     <label>
-                        <input
-                                type="checkbox"
-                                name="categories"
-                                value="clothes-to-use"
-                        />
+                        <input type="checkbox" name="categories" th:value="${category.id}"/>
                         <span class="checkbox"></span>
-                        <span class="description"
-                        >ubrania, które nadają się do ponownego użycia</span
-                        >
-                    </label>
-                </div>
-
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input
-                                type="checkbox"
-                                name="categories"
-                                value="clothes-useless"
-                        />
-                        <span class="checkbox"></span>
-                        <span class="description">ubrania, do wyrzucenia</span>
-                    </label>
-                </div>
-
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input type="checkbox" name="categories" value="toys"/>
-                        <span class="checkbox"></span>
-                        <span class="description">zabawki</span>
-                    </label>
-                </div>
-
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input type="checkbox" name="categories" value="books"/>
-                        <span class="checkbox"></span>
-                        <span class="description">książki</span>
-                    </label>
-                </div>
-
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input type="checkbox" name="categories" value="other"/>
-                        <span class="checkbox"></span>
-                        <span class="description">inne</span>
+                        <span class="description" th:text="${category.name}"></span>
                     </label>
                 </div>
 
@@ -158,36 +117,15 @@
                 </div>
             </div>
 
-
-            <!-- STEP 4 -->
+            <!-- STEP 3 -->
             <div data-step="3">
-                <h3>Wybierz organizacje, której chcesz pomóc:</h3>
-
-                <div class="form-group form-group--checkbox">
+                <h3>Wybierz organizację, której chcesz pomóc:</h3>
+                <div th:each="institution : ${institutions}" class="form-group form-group--checkbox">
                     <label>
-                        <input type="radio" name="organization" value="old"/>
-                        <span class="checkbox radio"></span>
-                        <span class="description">
-                  <div class="title">Fundacja “Bez domu”</div>
-                  <div class="subtitle">
-                    Cel i misja: Pomoc dla osób nie posiadających miejsca
-                    zamieszkania
-                  </div>
-                </span>
-                    </label>
-                </div>
-
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input type="radio" name="organization" value="old"/>
-                        <span class="checkbox radio"></span>
-                        <span class="description">
-                  <div class="title">Fundacja “Dla dzieci"</div>
-                  <div class="subtitle">
-                    Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji
-                    życiowej.
-                  </div>
-                </span>
+                        <input type="checkbox" name="institutions" th:value="${institution.id}"/>
+                        <span class="checkbox"></span>
+                        <span class="description" th:text="${institution.name}"></span>
+                        <span class="description" th:text="${institution.description}"></span>
                     </label>
                 </div>
 
@@ -197,9 +135,9 @@
                 </div>
             </div>
 
-            <!-- STEP 5 -->
+            <!-- STEP 4 -->
             <div data-step="4">
-                <h3>Podaj adres oraz termin odbioru rzecz przez kuriera:</h3>
+                <h3>Podaj adres oraz termin odbioru rzeczy przez kuriera:</h3>
 
                 <div class="form-section form-section--columns">
                     <div class="form-section--column">
@@ -213,15 +151,11 @@
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label>
-                                Kod pocztowy <input type="text" name="postcode"/>
-                            </label>
+                            <label> Kod pocztowy <input type="text" name="postcode"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label>
-                                Numer telefonu <input type="phone" name="phone"/>
-                            </label>
+                            <label> Numer telefonu <input type="phone" name="phone"/> </label>
                         </div>
                     </div>
 
@@ -236,20 +170,23 @@
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label>
-                                Uwagi dla kuriera
-                                <textarea name="more_info" rows="5"></textarea>
-                            </label>
+                            <label> Uwagi dla kuriera <textarea name="more_info" rows="5"></textarea> </label>
                         </div>
                     </div>
                 </div>
+
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
                     <button type="button" class="btn next-step">Dalej</button>
                 </div>
             </div>
 
-            <!-- STEP 6 -->
+
+
+
+
+
+            <!-- STEP 5 -->
             <div data-step="5">
                 <h3>Podsumowanie Twojej darowizny</h3>
 
@@ -304,6 +241,9 @@
     </div>
 </section>
 
+
+
+
 <footer>
     <div class="contact">
         <h2>Skontaktuj się z nami</h2>
@@ -331,15 +271,35 @@
         <span class="bottom-line--copy">Copyright &copy; 2018</span>
         <div class="bottom-line--icons">
             <a href="#" class="btn btn--small"
-            ><img th:src="@{/images/icon-facebook.svg}" alt="Facebook"
+            ><img th:src="@{/assets/images/icon-facebook.svg}" alt="Facebook"
             /></a>
             <a href="#" class="btn btn--small"
-            ><img th:src="@{/images/icon-instagram.svg}" alt="Instagram"
+            ><img th:src="@{/assets/images/icon-instagram.svg}" alt="Instagram"
             /></a>
         </div>
     </div>
 </footer>
 
-<script src="js/app.js"></script>
+<script src="/assets/js/app.js"></script>
+
+<script>
+    // JavaScript to handle step navigation (this is a basic example)
+    document.querySelectorAll('.next-step').forEach(button => {
+        button.addEventListener('click', () => {
+            const currentStep = document.querySelector('.form--steps-container .active');
+            currentStep.classList.remove('active');
+            currentStep.nextElementSibling.classList.add('active');
+        });
+    });
+
+    document.querySelectorAll('.prev-step').forEach(button => {
+        button.addEventListener('click', () => {
+            const currentStep = document.querySelector('.form--steps-container .active');
+            currentStep.classList.remove('active');
+            currentStep.previousElementSibling.classList.add('active');
+        });
+    });
+</script>
+
 </body>
 </html>

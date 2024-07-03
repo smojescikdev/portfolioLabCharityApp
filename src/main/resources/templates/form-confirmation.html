@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Document</title>
-  <link rel="stylesheet" th:href="@{/css/style.css}" />
+  <link rel="stylesheet" th:href="@{/assets/css/style.css}" />
 </head>
 <body>
 <header class="header--form-page">
   <nav class="container container--70">
     <ul class="nav--actions">
-      <li th:class="${isAuthenticated()} ? 'logged-user' : ''">
+<!--      <li th:class="${isAuthenticated()} ? 'logged-user' : ''">-->
         Witaj Agata
-        <ul th:if="${isAuthenticated()}" class="dropdown">
+<!--        <ul th:if="${isAuthenticated()}" class="dropdown">-->
           <li><a href="#">Profil</a></li>
           <li><a href="#">Moje zbiórki</a></li>
           <li><a href="#">Wyloguj</a></li>
@@ -65,15 +65,15 @@
     <span class="bottom-line--copy">Copyright &copy; 2018</span>
     <div class="bottom-line--icons">
       <a href="#" class="btn btn--small"
-      ><img th:src="@{/images/icon-facebook.svg}" alt="Facebook"
+      ><img th:src="@{/assets/images/icon-facebook.svg}" alt="Facebook"
       /></a>
       <a href="#" class="btn btn--small"
-      ><img th:src="@{/images/icon-instagram.svg}" alt="Instagram"
+      ><img th:src="@{/assets/images/icon-instagram.svg}" alt="Instagram"
       /></a>
     </div>
   </div>
 </footer>
 
-<script src="js/app.js"></script>
+<script src="assets/js/app.js"></script>
 </body>
 </html>
