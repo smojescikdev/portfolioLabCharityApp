@@ -22,14 +22,16 @@
             <!-- Liczba oddanych worków -->
             <em th:text="${totalQuantity}">10</em>
             <h3>Oddanych worków</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum tempora!</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum
+                tempora!</p>
         </div>
 
         <div class="stats--item">
             <!-- Liczba przekazanych darów -->
             <em th:text="${totalDonations}">5</em>
             <h3>Przekazanych darów</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas quam.</p>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
+                quam.</p>
         </div>
     </div>
 </section>
@@ -67,9 +69,9 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt
                 libero
                 optio esse quisquam illo omnis.</p>
-            <img th:src="@{/images/signature.svg}" class="about-us--text-signature" alt="Signature"/>
+            <img th:src="@{/assets/images/signature.svg}" class="about-us--text-signature" alt="Signature"/>
         </div>
-        <img th:src="@{/images/about-us.jpg}" alt="People in circle"/>
+        <img th:src="@{/assets/images/about-us.jpg}" alt="People in circle"/>
     </section>
 
 
@@ -96,13 +98,15 @@
 
         </div>
 
+
     </section>
+</section>
 
 
-    <!--FOOTER-->
-    <div th:insert="~{fragments/footer :: footer}"></div>
-    <!--FOOTER ENDED-->
+<!--FOOTER-->
+<div th:insert="~{fragments/footer :: footer}"></div>
+<!--FOOTER ENDED-->
 
-    <script th:src="@{/assets/js/app.js}"></script>
+<script th:src="@{/assets/js/app.js}"></script>
 </body>
 </html>
