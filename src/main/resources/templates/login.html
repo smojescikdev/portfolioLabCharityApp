@@ -5,70 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
 </head>
 <body>
-<header>
-    <nav class="container container--70">
-        <ul class="nav--actions">
-            <li th:if="${not isAuthenticated()}"><a href="#">Zaloguj</a></li>
-            <li th:if="${not isAuthenticated()}" class="highlighted"><a href="#">Załóż konto</a></li>
-        </ul>
 
-        <ul>
-            <li><a th:href="@{/index.html}" class="btn btn--without-border active">Start</a></li>
-            <li><a th:href="@{/index.html#steps}" class="btn btn--without-border">O co chodzi?</a></li>
-            <li><a th:href="@{/index.html#about-us}" class="btn btn--without-border">O nas</a></li>
-            <li><a th:href="@{/index.html#help}" class="btn btn--without-border">Fundacje i organizacje</a></li>
-            <li><a th:href="@{/index.html#contact}" class="btn btn--without-border">Kontakt</a></li>
-        </ul>
-    </nav>
-</header>
+
+<!--  HEADER -->
+<div th:insert="~{fragments/header :: header}"></div>
+<!--HEADER ENDED-->
+
 
 <section class="login-page">
     <h2>Zaloguj się</h2>
-    <form>
+    <form th:action="@{/login}" th:object="${user}" method="post">
         <div class="form-group">
-            <input type="email" name="email" placeholder="Email"/>
+            <input  placeholder="Email"
+                    name="username"
+                    field="{email}"
+                    type="email"
+                    required/>
         </div>
+
+
         <div class="form-group">
-            <input type="password" name="password" placeholder="Hasło"/>
+            <input placeholder="Hasło"
+                   name="password"
+                   field="{password}"
+                   type="password"
+                   required/>
+
             <a href="#" class="btn btn--small btn--without-border reset-password">Przypomnij hasło</a>
         </div>
 
         <div class="form-group form-group--buttons">
-            <a href="#" th:href="@{/signup.html}" class="btn btn--without-border">Załóż konto</a>
+            <a href="#" th:href="@{/register}" class="btn btn--without-border">Załóż konto</a>
             <button class="btn" type="submit">Zaloguj się</button>
         </div>
     </form>
 </section>
 
-<footer>
-    <div class="contact">
-        <h2>Skontaktuj się z nami</h2>
-        <h3>Formularz kontaktowy</h3>
-        <form>
-            <div class="form-group form-group--50">
-                <input type="text" name="name" placeholder="Imię"/>
-            </div>
-            <div class="form-group form-group--50">
-                <input type="text" name="surname" placeholder="Nazwisko"/>
-            </div>
 
-            <div class="form-group">
-                <textarea name="message" placeholder="Wiadomość" rows="1"></textarea>
-            </div>
+<!--FOOTER-->
+<div th:insert="~{fragments/footer :: footer}"></div>
+<!--FOOTER ENDED-->
 
-            <button class="btn" type="submit">Wyślij</button>
-        </form>
-    </div>
-    <div class="bottom-line">
-        <span class="bottom-line--copy">Copyright &copy; 2018</span>
-        <div class="bottom-line--icons">
-            <a href="#" class="btn btn--small"><img th:src="@{/images/icon-facebook.svg}" alt="Facebook"/></a>
-            <a href="#" class="btn btn--small"><img th:src="@{/images/icon-instagram.svg}" alt="Instagram"/></a>
-        </div>
-    </div>
-</footer>
+
 </body>
 </html>
