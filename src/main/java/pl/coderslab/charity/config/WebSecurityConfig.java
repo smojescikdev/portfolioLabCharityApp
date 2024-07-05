@@ -51,7 +51,10 @@ public class WebSecurityConfig {
             "/*.js",
             "/*.js.map",
             "/resources/static/assets/**",
-            "/fonts**", "/favicon.ico", "/resources/**", "/error"};
+            "/fonts**", "/favicon.ico", "/resources/**", "/error",
+            "/form",
+            "/form-confirmation",
+    };
 
 
     @Bean
