@@ -45,12 +45,12 @@ public class DonationController {
     @PostMapping("/form-confirmation")
     public String processForm(@RequestParam(name = "categories", required = false) List<Category> categories,
                               @RequestParam(name = "bags", required = false) Integer quantity,
-                              @RequestParam(name = "institutions", required = false) List<Institution> institutions,
+                              @RequestParam(name = "institution", required = false) Institution institution,
                               @RequestParam(name = "address", required = false) String street,
                               @RequestParam(name = "city", required = false) String city,
                               @RequestParam(name = "postcode", required = false) String zipcode,
                               @RequestParam(name = "phone", required = false) String phone,
-                              @RequestParam(name = "data", required = false) LocalDate pickUpDate,
+                              @RequestParam(name = "date", required = false) LocalDate pickUpDate,
                               @RequestParam(name = "time", required = false) LocalTime pickUpTime,
                               @RequestParam(name = "more_info", required = false) String pickUpComment,
                               Model model) {
@@ -59,7 +59,7 @@ public class DonationController {
         Donation donation = new Donation();
         donation.setCategories(categories);
         donation.setQuantity(quantity);
-        donation.setInstitution(institutions.get(0));
+        donation.setInstitution(institution);
         donation.setStreet(street);
         donation.setCity(city);
         donation.setZipCode(zipcode);
