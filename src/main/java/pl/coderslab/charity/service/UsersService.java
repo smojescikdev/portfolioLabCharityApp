@@ -30,23 +30,14 @@ public class UsersService {
         users.setActive(true);
         users.setRegistrationDate(new Date(System.currentTimeMillis()));
         users.setPassword(passwordEncoder.encode(users.getPassword()));
+
+        //get name & surname
+        users.setName(users.getName());
+        users.setSurname(users.getSurname());
+
+
         Users savedUser = usersRepository.save(users);
-        int userTypeId = users.getUserTypeId().getUserTypeId();
-//        if (userTypeId == 1) {
-//            recruiterProfileRepository.save(new RecruiterProfile(savedUser));
-//
-//        } else {
-//
-//            JobSeekerProfile jobSeekerProfile = new JobSeekerProfile(savedUser);
-//
-//
-//            JobSeekerBasicInformation jobSeekerBasicInformation = new JobSeekerBasicInformation();
-//            jobSeekerBasicInformation.setJobSeekerProfile(jobSeekerProfile);
-//
-//            jobSeekerProfile.setJobSeekerBasicInformation(jobSeekerBasicInformation);
-//
-//            jobSeekerProfileRepository.save(jobSeekerProfile);
-//        }
+
         return savedUser;
 
     }

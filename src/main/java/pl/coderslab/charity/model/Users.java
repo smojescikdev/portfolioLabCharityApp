@@ -34,17 +34,25 @@ public class Users {
     @JoinColumn(name = "userTypeId", referencedColumnName = "userTypeId")
     private UsersType userTypeId;
 
+    //name & surname fields
+    @NotEmpty
+    private String name;
+
+    @NotEmpty
+    private String surname;
 
     public Users() {
     }
 
-    public Users(UsersType userTypeId, Date registrationDate, boolean isActive, String password, String email, int userId) {
-        this.userTypeId = userTypeId;
-        this.registrationDate = registrationDate;
-        this.isActive = isActive;
-        this.password = password;
-        this.email = email;
+    public Users(int userId, String email, String password, boolean isActive, Date registrationDate, UsersType userTypeId, String name, String surname) {
         this.userId = userId;
+        this.email = email;
+        this.password = password;
+        this.isActive = isActive;
+        this.registrationDate = registrationDate;
+        this.userTypeId = userTypeId;
+        this.name = name;
+        this.surname = surname;
     }
 
 
@@ -56,7 +64,8 @@ public class Users {
                 ", password='" + password + '\'' +
                 ", isActive=" + isActive +
                 ", registrationDate=" + registrationDate +
-                ", userTypeId=" + userTypeId +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
                 '}';
     }
 }

@@ -41,44 +41,35 @@
             <input type="password" name="password2" placeholder=" NOT WORK - Powtórz hasło"/>
         </div>
 
-<!--//test-->
-<!--        <div class="form-group">-->
-<!--            <input min="3"-->
-<!--                   placeholder="Imię"-->
-<!--                   name="imię"-->
-<!--                   th:field="*{name}"-->
-<!--                   type="name"-->
-<!--                   required/>-->
-<!--        </div>-->
-
-
-<!--        <div class="form-group">-->
-<!--            <input min="3"-->
-<!--                   placeholder="Nazwisko"-->
-<!--                   name="surname"-->
-<!--                   th:field="*{surname}"-->
-<!--                   type="surname"-->
-<!--                   required/>-->
-<!--        </div>-->
-<!--        test ended here-->
-
-
+        <!--//test-->
         <div class="form-group">
-                <select
-                        required
-                        class="form-group"
-                        th:field="*{userTypeId}"
-                >
-                    <th:block th:each="userType :${getAllTypes}">
-                        <option class="form-group"
-                                th:text="${userType.userTypeName}"
-                                th:value="${userType.userTypeId}"
-                        ></option>
-                    </th:block>
-                </select>
+            <input minlength="3"
+                   placeholder="Imię"
+                   name="name"
+                   th:field="*{name}"
+                   type="text"
+                   required/>
         </div>
 
 
+        <div class="form-group">
+            <input minlength="3"
+                   placeholder="Nazwisko"
+                   name="surname"
+                   th:field="*{surname}"
+                   type="text"
+                   required/>
+        </div>
+        <!--        test ended here-->
+
+
+        <div class="form-group">
+            <select required th:field="*{userTypeId}">
+                <th:block th:each="userType :${getAllTypes}">
+                    <option th:text="${userType.userTypeName}" th:value="${userType.userTypeId}"></option>
+                </th:block>
+            </select>
+        </div>
 
 
         <div class="form-group form-group--buttons">

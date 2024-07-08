@@ -55,7 +55,7 @@ public class DonationController {
                               @RequestParam(name = "more_info", required = false) String pickUpComment,
                               Model model) {
 
-        // Przykładowe zapisywanie do bazy danych
+
         Donation donation = new Donation();
         donation.setCategories(categories);
         donation.setQuantity(quantity);
@@ -68,12 +68,12 @@ public class DonationController {
         donation.setPickUpTime(pickUpTime);
         donation.setPickUpComment(pickUpComment);
 
-        donationRepository.save(donation); // Zapisuje do bazy danych
+        donationRepository.save(donation);
 
-        // Dodanie danych do modelu
+
         model.addAttribute("donation", donation);
 
-        // Przekierowanie do widoku potwierdzenia
+
         return "form-confirmation";
     }
 }
