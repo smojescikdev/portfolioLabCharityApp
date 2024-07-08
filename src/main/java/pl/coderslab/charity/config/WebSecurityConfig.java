@@ -52,8 +52,6 @@ public class WebSecurityConfig {
             "/*.js.map",
             "/resources/static/assets/**",
             "/fonts**", "/favicon.ico", "/resources/**", "/error",
-            "/form",
-            "/form-confirmation",
     };
 
 
