@@ -66,4 +66,18 @@ public class UsersController {
         }
         return "redirect:/";
     }
+
+
+    // widok TYLKO dla admina
+    @GetMapping("/admin/admin-dashboard")
+    public String adminDashboard(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Users currentUser = usersService.getCurrentUser();
+        UsersType currentUserType = currentUser.getUserTypeId();
+        if (currentUserType != null && "Admin".equals(currentUserType.getUserTypeName())) {
+            model.addAttribute("user", currentUser);
+            return "admin/admin-dashboard";
+        }
+        return "redirect:/access-denied";
+    }
 }

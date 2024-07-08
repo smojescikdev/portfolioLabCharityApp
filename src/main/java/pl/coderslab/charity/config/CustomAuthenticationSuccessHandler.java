@@ -27,8 +27,16 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         boolean hasAdminRole = authentication.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("Admin"));
 
 
-        if (hasAdminRole || hasUserRole) {
-            response.sendRedirect("/dashboard/");
+
+
+        //role admin or user
+        if (hasAdminRole) {
+            response.sendRedirect("/admin/admin-dashboard");
+        } else if (hasUserRole) {
+            response.sendRedirect("/");
         }
+
+
+
     }
 }
