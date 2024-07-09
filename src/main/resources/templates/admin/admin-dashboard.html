@@ -14,9 +14,12 @@
 <div th:insert="~{fragments/header :: header}"></div>
 <!--HEADER ENDED-->
 
+<div class="container align-items-center">
+    <h1>ADMIN DASH BOARD</h1>
 
-<h1>ADMIN DASH BOARD</h1>
+    <a th:href="@{/admin/institutions-list}" class="btn btn-primary">Show Institutions List</a>
 
+</div>
 
 <!--FOOTER-->
 <div th:insert="~{fragments/footer :: footer}"></div>

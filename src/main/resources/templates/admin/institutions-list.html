@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
+
+
+    <title>Lista organizacji</title>
+
+
+</head>
+<body>
+
+
+<!--  HEADER -->
+<div th:insert="~{fragments/header :: header}"></div>
+<!--HEADER ENDED-->
+
+
+<div class="container">
+    <h1>Institutions List</h1>
+    <h3>Lista organizacji:</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="institution : ${institutions}">
+            <td th:text="${institution.id}"></td>
+            <td th:text="${institution.name}"></td>
+            <td th:text="${institution.description}"></td>
+            <td class="crud-buttons">
+<!--                <button type="button" onclick="deleteInstitution(${institution.id})">Usuń</button>-->
+
+                <div class="col-md-6">
+                    <form th:action="@{/admin/delete/confirm/{id}(id=${institution.id})}"
+                          method="get">
+                        <button class="btn-sec btn-black w-100" type="submit">Delete Institution</button>
+                    </form>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <form th:action="@{/admin/edit/{id}(id=${institution.id})}" method="get">
+                            <button class="btn-sec btn-red w-100" type="submit">Edit Institution</button>
+                        </form>
+                    </div>
+                </div>
+
+<!--                <button type="button" onclick="editInstitution(${institution.id})">Edytuj</button>-->
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!--FOOTER-->
+<div th:insert="~{fragments/footer :: footer}"></div>
+<!--FOOTER ENDED-->
+
+
+</body>
+</html>

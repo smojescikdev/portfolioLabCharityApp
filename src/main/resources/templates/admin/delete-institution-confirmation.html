@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
+
+
+    <title>Usuwanie instytucji - potwierdzenie</title>
+
+
+</head>
+<body>
+
+
+<!--  HEADER -->
+<div th:insert="~{fragments/header :: header}"></div>
+<!--HEADER ENDED-->
+
+<div class="container align-items-center">
+    <h2>Are you sure you want to delete this institution?</h2>
+    <div class="box mt-3">
+        <div>
+            <p>Job Title: <span th:text="${institution.id}"></span></p>
+            <p>Posted Date: <span th:text="${institution.name}"></span></p>
+            <p>Industry: <span th:text="${institution.description}"></span></p>
+        </div>
+        <form th:action="@{/admin/institution/{id}(id=${institution.id})}" method="post">
+            <button type="submit">Delete</button>
+            <a th:href="@{/admin/admin-dashboard}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+
+
+<!--FOOTER-->
+<div th:insert="~{fragments/footer :: footer}"></div>
+<!--FOOTER ENDED-->
+
+
+</body>
+</html>

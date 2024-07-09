@@ -25,4 +25,13 @@ public class InstitutionService {
     public Institution findById(Long institutionIds) {
         return institutionRepository.findById(institutionIds);
     }
+
+    public Institution getOne(int id) {
+        return institutionRepository.getReferenceById(id);
+    }
+
+    public void deleteInstitution(int id) {
+        institutionRepository.deleteById(id);
+
+    }
 }
