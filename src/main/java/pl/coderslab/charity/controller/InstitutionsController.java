@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.charity.model.Institution;
@@ -70,5 +71,19 @@ public class InstitutionsController {
         return "redirect:/admin/institutions-list";
     }
 
+//edycja instytucji
+@GetMapping("/admin/edit/{id}")
+public String editInstitution(@PathVariable("id") int id, Model model) {
+    Institution institution = institutionService.getOne(id);
+    model.addAttribute("institution", institution);
 
+    return "admin/edit-institution";
+}
+
+    @PostMapping("/admin/editInstitution")
+    public String editInstitutionPost(@ModelAttribute("institution") Institution institution) {
+        institutionService.addNew(institution); // Zapisz zmienioną instytucję
+
+        return "redirect:/admin/institutions-list";
+    }
 }
