@@ -68,16 +68,30 @@ public class UsersController {
     }
 
 
-    // widok TYLKO dla admina
+//    // widok TYLKO dla admina
+//    @GetMapping("/admin/admin-dashboard")
+//    public String adminDashboard(Model model) {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        Users currentUser = usersService.getCurrentUser();
+//        UsersType currentUserType = currentUser.getUserTypeId();
+//        if (currentUserType != null && "Admin".equals(currentUserType.getUserTypeName())) {
+//            model.addAttribute("user", currentUser);
+//            return "admin/admin-dashboard";
+//        }
+//        return "redirect:/access-denied";
+//    }
+
+
     @GetMapping("/admin/admin-dashboard")
     public String adminDashboard(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Users currentUser = usersService.getCurrentUser();
-        UsersType currentUserType = currentUser.getUserTypeId();
-        if (currentUserType != null && "Admin".equals(currentUserType.getUserTypeName())) {
-            model.addAttribute("user", currentUser);
-            return "admin/admin-dashboard";
-        }
-        return "redirect:/access-denied";
+        model.addAttribute("user", currentUser);
+        return "admin/admin-dashboard";
+    }
+
+    @GetMapping("/access-denied")
+    public String accessDenied() {
+        return "access-denied";
     }
 }
+

@@ -18,25 +18,30 @@ import java.io.IOException;
 
 @Component
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String username = userDetails.getUsername();
-        System.out.println("The username " + username + " is logged in");
+        System.out.println("The username {} is logged in" + username);
+
+        authentication.getAuthorities().forEach(authority -> {
+            System.out.println("Role: {}" + authority.getAuthority());
+        });
+
         boolean hasUserRole = authentication.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("User"));
         boolean hasAdminRole = authentication.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("Admin"));
 
-
-
-
-        //role admin or user
+        // Role admin or user
         if (hasAdminRole) {
+            System.out.println("ROLE: Admin");
             response.sendRedirect("/admin/admin-dashboard");
         } else if (hasUserRole) {
+            System.out.println("ROLE: User");
             response.sendRedirect("/");
+        } else {
+            System.out.println("No valid role found for user");
+            response.sendRedirect("/access-denied");
         }
-
-
-
     }
 }

@@ -59,15 +59,17 @@ public class WebSecurityConfig {
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider());
         http.authorizeHttpRequests(auth -> {
-            auth.requestMatchers(publicUrl).permitAll();
-            auth.anyRequest().authenticated();
+            auth
+                    .requestMatchers("/admin/admin-dashboard").hasAuthority("Admin") // Użycie hasAuthority zamiast hasRole
+                    .requestMatchers(publicUrl).permitAll()
+                    .anyRequest().authenticated();
         });
 
         // Konfiguracja strony logowania
         http.formLogin(form -> form
                         .loginPage("/login")
-                        .permitAll().successHandler(customAuthenticationSuccessHandler))
-                // Konfiguracja wylogowania
+                        .permitAll()
+                        .successHandler(customAuthenticationSuccessHandler)) // Użyj CustomAuthenticationSuccessHandler
 
 
                 .logout(logout -> {
@@ -78,6 +80,7 @@ public class WebSecurityConfig {
 
         return http.build();
     }
+
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
