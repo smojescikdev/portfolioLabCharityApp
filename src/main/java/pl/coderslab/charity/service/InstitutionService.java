@@ -34,4 +34,8 @@ public class InstitutionService {
         institutionRepository.deleteById(id);
 
     }
+
+    public Institution addNew(Institution institution) {
+        return institutionRepository.save(institution);
+    }
 }

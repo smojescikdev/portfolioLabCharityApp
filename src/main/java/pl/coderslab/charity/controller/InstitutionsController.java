@@ -7,13 +7,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.charity.model.Institution;
+import pl.coderslab.charity.model.Users;
 import pl.coderslab.charity.service.InstitutionService;
+import pl.coderslab.charity.service.UsersService;
 
 @Controller
 public class InstitutionsController {
 
     @Autowired
     InstitutionService institutionService;
+
+    @Autowired
+    UsersService usersService;
 
 
     // wyświetla liste fundacji
@@ -39,6 +44,28 @@ public class InstitutionsController {
     @PostMapping("/admin/institution/{id}")
     public String deleteInstitution(@PathVariable("id") int id) {
         institutionService.deleteInstitution(id);
+
+        return "redirect:/admin/institutions-list";
+    }
+
+
+
+
+    //dodawanie instytucji
+    @GetMapping("/admin/add")
+    public String addJobs(Model model) {
+        model.addAttribute("institution", new Institution());
+        model.addAttribute("user", usersService.getCurrentUser());
+
+        return "admin/add-institution";
+    }
+
+
+    @PostMapping("/admin/addNewInstitution")
+    public String addNew(Model model, Institution institution) {
+        Users user = usersService.getCurrentUser();
+
+        Institution saved = institutionService.addNew(institution);
 
         return "redirect:/admin/institutions-list";
     }
