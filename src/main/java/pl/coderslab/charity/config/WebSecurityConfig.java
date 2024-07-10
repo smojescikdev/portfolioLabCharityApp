@@ -60,7 +60,7 @@ public class WebSecurityConfig {
         http.authenticationProvider(authenticationProvider());
         http.authorizeHttpRequests(auth -> {
             auth
-                    .requestMatchers("/admin/admin-dashboard").hasAuthority("Admin") // Użycie hasAuthority zamiast hasRole
+                    .requestMatchers("/admin/**").hasAuthority("Admin") // hasAuthority zamiast hasRole
                     .requestMatchers(publicUrl).permitAll()
                     .anyRequest().authenticated();
         });
