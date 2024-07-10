@@ -16,8 +16,19 @@
             <li><a sec:authorize="isAnonymous()" href="/register" class="btn head-btn1">Zarejestruj się</a></li>
             <li><a sec:authorize="isAnonymous()" href="/login" class="btn head-btn2">Zaloguj się</a></li>
             <li sec:authorize="isAuthenticated()">
-                <button class="btn head-btn2 header-btn f-right d-lg-block" onclick="window.location.href='/logout'">Wyloguj się</button>
+                <button class="btn head-btn2 header-btn f-right d-lg-block" onclick="window.location.href='/logout'">
+                    Wyloguj się
+                </button>
             </li>
+
+
+            //TODO
+            <li sec:authorize="hasRole('ADMIN')">
+                <button class="btn head-btn2 header-btn f-right d-lg-block"
+                        onclick="window.location.href='/admin/admin-dashboard'">Admin Dashboard
+                </button>
+            </li>
+
 
         </ul>
 
@@ -31,6 +42,7 @@
             <li><a th:href="@{'#contact'}" class="btn btn--without-border">Kontakt</a></li>
         </ul>
     </nav>
+
 
     <div class="slogan container container--90">
         <div class="slogan--item">
