@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -11,9 +11,14 @@
 <header class="header--main-page">
     <nav class="container container--70">
         <ul class="nav--actions">
-            <!-- Linki do logowania i zakładania konta -->
-            <li><a th:href="@{/login}" class="btn btn--small btn--without-border">Zaloguj</a></li>
-            <li><a th:href="@{/register}" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+
+
+            <li><a sec:authorize="isAnonymous()" href="/register" class="btn head-btn1">Zarejestruj się</a></li>
+            <li><a sec:authorize="isAnonymous()" href="/login" class="btn head-btn2">Zaloguj się</a></li>
+            <li sec:authorize="isAuthenticated()">
+                <button class="btn head-btn2 header-btn f-right d-lg-block" onclick="window.location.href='/logout'">Wyloguj się</button>
+            </li>
+
         </ul>
 
         <ul>
