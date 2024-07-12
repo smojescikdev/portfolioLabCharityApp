@@ -8,7 +8,7 @@
     <link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
 
 
-    <title>Lista organizacji</title>
+    <title>Lista adminów</title>
 
 
 </head>
@@ -21,40 +21,34 @@
 
 
 <div class="container">
-    <h1>Institutions List</h1>
-    <a th:href="@{/admin/add}" class="btn btn-primary">Add Institution</a>
-    <h3>Lista organizacji:</h3>
+    <h1>Lista adminów</h1>
     <table class="table">
         <thead>
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Description</th>
+            <th>Email</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="institution : ${institutions}">
-            <td th:text="${institution.id}"></td>
-            <td th:text="${institution.name}"></td>
-            <td th:text="${institution.description}"></td>
+        <tr th:each="admin : ${admins}">
+            <td th:text="${admin.userTypeId}"></td>
+<!--            <td th:text="${admin.name} + ' ' + ${admin.surname}"></td>-->
+<!--            <td th:text="${admin.email}"></td>-->
             <td class="crud-buttons">
-<!--                <button type="button" onclick="deleteInstitution(${institution.id})">Usuń</button>-->
-
                 <div class="row">
                     <div class="col-md-6">
-                        <form th:action="@{/admin/delete/confirm/{id}(id=${institution.id})}" method="get">
-                            <button class="btn-sec btn-black w-100" type="submit">Delete Institution</button>
+                        <form th:action="@{/admin/delete/confirm/{id}(id=${admin.userTypeId})}" method="get">
+                            <button class="btn-sec btn-black w-100" type="submit">Delete Admin</button>
                         </form>
                     </div>
                     <div class="col-md-6">
-                        <form th:action="@{/admin/edit/{id}(id=${institution.id})}" method="get">
-                            <button class="btn-sec btn-red w-100" type="submit">Edit Institution</button>
+                        <form th:action="@{/admin/edit/{id}(id=${admin.userTypeId})}" method="get">
+                            <button class="btn-sec btn-red w-100" type="submit">Edit Admin</button>
                         </form>
                     </div>
                 </div>
-
-<!--                <button type="button" onclick="editInstitution(${institution.id})">Edytuj</button>-->
             </td>
         </tr>
         </tbody>

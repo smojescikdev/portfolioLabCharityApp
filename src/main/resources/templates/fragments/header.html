@@ -22,8 +22,8 @@
             </li>
 
 
-            //TODO
-            <li sec:authorize="hasRole('ADMIN')">
+
+            <li sec:authorize="hasAuthority('Admin')">
                 <button class="btn head-btn2 header-btn f-right d-lg-block"
                         onclick="window.location.href='/admin/admin-dashboard'">Admin Dashboard
                 </button>

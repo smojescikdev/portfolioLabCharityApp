@@ -7,21 +7,26 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.coderslab.charity.model.Institution;
 import pl.coderslab.charity.model.Users;
 import pl.coderslab.charity.repository.UsersRepository;
+import pl.coderslab.charity.repository.UsersTypeRepository;
 
 import java.sql.Date;
+import java.util.List;
 
 @Service
 public class UsersService {
 
     private final UsersRepository usersRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UsersTypeRepository usersTypeRepository;
 
     @Autowired
-    public UsersService(UsersRepository usersRepository, PasswordEncoder passwordEncoder) {
+    public UsersService(UsersRepository usersRepository, PasswordEncoder passwordEncoder, UsersTypeRepository usersTypeRepository) {
         this.usersRepository = usersRepository;
         this.passwordEncoder = passwordEncoder;
+        this.usersTypeRepository = usersTypeRepository;
     }
 
 
@@ -73,5 +78,6 @@ public class UsersService {
         }
         return null;
     }
+
 }
 
