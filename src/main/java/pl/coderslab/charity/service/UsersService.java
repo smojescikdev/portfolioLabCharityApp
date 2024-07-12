@@ -7,7 +7,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.coderslab.charity.model.Institution;
 import pl.coderslab.charity.model.Users;
 import pl.coderslab.charity.repository.UsersRepository;
 import pl.coderslab.charity.repository.UsersTypeRepository;
@@ -30,7 +29,7 @@ public class UsersService {
     }
 
 
-    // zapis usera do bazy + utworzenie profilu
+    // zapis usera do bazy
     public Users addNewUser(Users users) {
         users.setActive(true);
         users.setRegistrationDate(new Date(System.currentTimeMillis()));
@@ -47,26 +46,6 @@ public class UsersService {
 
     }
 
-    // zwraca profil aktualnie zalogowanego użytkownika
-//    public Object getCurrentUserProfile() {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//
-//        if (authentication instanceof AnonymousAuthenticationToken) {
-//            String username = authentication.getName();
-//            Users users = usersRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("Could not found " + "user"));
-//
-//            int userId = users.getUserId();
-//            if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("Recruiter"))) {
-//                RecruiterProfile recruiterProfile = recruiterProfileRepository.findById(userId).orElse(new RecruiterProfile());
-//                return recruiterProfile;
-//            } else {
-//                JobSeekerProfile jobSeekerProfile = jobSeekerProfileRepository.findById(userId).orElse(new JobSeekerProfile());
-//                return jobSeekerProfile;
-//            }
-//        }
-//        return null;
-//
-//    }
 
     //zwraca aktualnie zalogowanego użytkownika
     public Users getCurrentUser() {
@@ -79,5 +58,53 @@ public class UsersService {
         return null;
     }
 
+    public List<Users> findAll() {
+        return usersRepository.findAll();
+    }
+
+    public Users getOne(int id) {
+        return usersRepository.getReferenceById(id);
+    }
+
+
+    public void editUser(Users users) {
+        Users existingUser = usersRepository.findById(users.getUserId()).orElse(null);
+        if (existingUser == null) {
+            throw new IllegalArgumentException("Użytkownik nie istnieje ID: " + users.getUserId());
+        }
+
+        existingUser.setName(users.getName());
+        existingUser.setSurname(users.getSurname());
+        // existingUser.setEmail(users.getEmail());
+
+
+        existingUser.setPassword(passwordEncoder.encode(users.getPassword()));
+
+        usersRepository.save(existingUser);
+    }
+
+
+    //dodawanie admina przez admina
+    public void addNewUserByAdmin(Users users) {
+        users.setActive(true);
+        users.setRegistrationDate(new Date(System.currentTimeMillis()));
+        users.setEmail(users.getEmail());
+        users.setPassword(passwordEncoder.encode(users.getPassword()));
+        users.setName(users.getName());
+        users.setSurname(users.getSurname());
+
+        Users savedUser = usersRepository.save(users);
+    }
+
+
+    public void deleteUserById(int userId) {
+        usersRepository.deleteUserById(userId);
+    }
+
+
+//TO CHECK & DELETE
+    public Users getOne1(int userId) {
+        return usersRepository.findById(userId).orElse(null);
+    }
 }
 

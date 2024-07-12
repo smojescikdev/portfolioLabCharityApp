@@ -14,6 +14,20 @@
 <div th:insert="~{fragments/header :: header}"></div>
 <!--HEADER ENDED-->
 
+
+
+<div class="container align-items-center">
+    <h1>Admin menu</h1>
+
+    <a th:href="@{/admin/institutions-list}" class="btn btn-primary">Show Institutions List</a>
+    <a th:href="@{/admin/add}" class="btn btn-primary">Add Institution</a>
+
+    <a th:href="@{/admin/admin-list}" class="btn btn-primary">Show Admin List</a>
+    <a th:href="@{/admin/add-admin}" class="btn btn-primary">Add New Admin</a>
+
+</div>
+
+
 <form id="job-main-form"
       th:action="${institution.id} == null ? @{/admin/addNewInstitution}"
       th:object="${institution}" method="post" class="job-add-form">

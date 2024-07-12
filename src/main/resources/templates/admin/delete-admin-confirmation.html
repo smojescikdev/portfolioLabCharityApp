@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Usuwanie administratora</title>
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
+
+
+    <title>Usuwanie administratora - potwierdzenie</title>
+
+
+</head>
+<body>
+
+
+<!--  HEADER -->
+<div th:insert="~{fragments/header :: header}"></div>
+<!--HEADER ENDED-->
+
+
+<div class="container align-items-center">
+    <h2>Czy na pewno chcesz usunąć administratora?</h2>
+    <div class="box mt-3">
+        <div>
+            <p>ID: <span th:text="${user.userId}"></span></p>
+            <p>Imię użytkownika: <span th:text="${user.name}"></span></p>
+            <p>Nazwisko użytkownika: <span th:text="${user.surname}"></span></p>
+            <p>Email: <span th:text="${user.email}"></span></p>
+            <p>Rola użytkownika: <span th:text="${user.userTypeId.userTypeName}"></span></p>
+            <p>Data rejestracji: <span th:text="${user.registrationDate}"></span></p>
+        </div>
+
+        <form th:action="@{/admin/admin-delete/{userId}(userId=${user.userId})}" method="post">
+            <button type="submit">Delete</button>
+            <a th:href="@{/admin/admin-list}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+
+
+
+<!--FOOTER-->
+<div th:insert="~{fragments/footer :: footer}"></div>
+<!--FOOTER ENDED-->
+
+
+</body>
+</html>

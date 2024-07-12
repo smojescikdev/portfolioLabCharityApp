@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Add admin</title>
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
+</head>
+<body>
+
+
+<!--  HEADER -->
+<div th:insert="~{fragments/header :: header}"></div>
+<!--HEADER ENDED-->
+
+
+<div class="container align-items-center">
+    <h1>Admin menu</h1>
+
+    <a th:href="@{/admin/institutions-list}" class="btn btn-primary">Show Institutions List</a>
+    <a th:href="@{/admin/add}" class="btn btn-primary">Add Institution</a>
+
+    <a th:href="@{/admin/admin-list}" class="btn btn-primary">Show Admin List</a>
+    <a th:href="@{/admin/add-admin}" class="btn btn-primary">Add New Admin</a>
+
+</div>
+
+
+<label class="heading_font font_sub_heading_color">Add admin form</label>
+<form th:action="@{/admin/addNewAdmin}"
+      th:object="${users}"
+      method="post">
+
+    <div class="form-group">
+        <input placeholder="Email" name="email" th:field="*{email}" type="email" required/>
+    </div>
+
+    <div class="form-group">
+        <input min="3"
+               placeholder="Haslo"
+               name="password"
+               th:field="*{password}"
+               type="password"
+               required/>
+    </div>
+    <div class="form-group">
+        <input type="password" name="password2" placeholder="password2-not-working"/>
+    </div>
+
+    <div class="form-group">
+        <input minlength="3"
+               placeholder="Imię"
+               name="name"
+               th:field="*{name}"
+               type="text"
+               required/>
+    </div>
+
+
+    <div class="form-group">
+        <input minlength="3"
+               placeholder="Nazwisko"
+               name="surname"
+               th:field="*{surname}"
+               type="text"
+               required/>
+    </div>
+
+    <div class="form-group">
+        <select required th:field="*{userTypeId}">
+            <th:block th:each="userType :${getAllTypes}">
+                <option th:text="${userType.userTypeName}" th:value="${userType.userTypeId}"></option>
+            </th:block>
+        </select>
+    </div>
+
+    <div class="form-group form-group--buttons">
+        <button type="submit" class="btn">Dodaj ADMINISTRATORA</button>
+    </div>
+</form>
+
+
+</body>
+
+
+
+<!--FOOTER-->
+<div th:insert="~{fragments/footer :: footer}"></div>
+<!--FOOTER ENDED-->
+
+</body>
+</html>

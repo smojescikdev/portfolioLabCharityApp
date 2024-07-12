@@ -10,6 +10,8 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.charity.model.Users;
 import pl.coderslab.charity.model.UsersType;
@@ -67,20 +69,7 @@ public class UsersController {
         return "redirect:/";
     }
 
-
-//    // widok TYLKO dla admina
-//    @GetMapping("/admin/admin-dashboard")
-//    public String adminDashboard(Model model) {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        Users currentUser = usersService.getCurrentUser();
-//        UsersType currentUserType = currentUser.getUserTypeId();
-//        if (currentUserType != null && "Admin".equals(currentUserType.getUserTypeName())) {
-//            model.addAttribute("user", currentUser);
-//            return "admin/admin-dashboard";
-//        }
-//        return "redirect:/access-denied";
-//    }
-
+    //**ADMIN DASHBOARD ****
 
     @GetMapping("/admin/admin-dashboard")
     public String adminDashboard(Model model) {
@@ -95,7 +84,86 @@ public class UsersController {
     }
 
 
+    //*********************ADMIN MANAGEMENT***************
 
 
+    // wyświetla liste adminow
+    @GetMapping("/admin/admin-list")
+    public String listAdmins(Model model) {
+        Integer adminTypeId = 2;
+        List<UsersType> admins = usersTypeService.getAllByUserTypeId(adminTypeId);
+        List<Users> users = usersService.findAll();
+
+        model.addAttribute("admins", admins);
+        model.addAttribute("users", users);
+
+        Users currentUser = usersService.getCurrentUser();
+        model.addAttribute("currentUser", currentUser);
+
+        return "admin/admin-list";
+    }
+
+
+    //edycja admina
+    @GetMapping("/admin/edit-admin/{id}")
+    public String editAdmin(@PathVariable("id") int id, Model model) {
+        Users users = usersService.getOne(id);
+        model.addAttribute("user", users);
+        return "admin/edit-admin";
+    }
+
+
+    @PostMapping("/admin/editAdmin")
+    public String editAdminPost(@Valid @ModelAttribute("user") Users user) {
+        usersService.editUser(user);
+        return "redirect:/admin/admin-list";
+    }
+
+
+    //dodawanie admina
+    @GetMapping("/admin/add-admin")
+    public String addAdmin(Model model) {
+        model.addAttribute("users", new Users());
+
+        //nie wiedzialem co tu dac zamiast getcurrentUser? chcialem miec dostep do pol z modelu User
+        model.addAttribute("user", usersService.getCurrentUser());
+
+
+        List<UsersType> usersTypes = usersTypeService.getAllUsersTypes();
+        model.addAttribute("getAllTypes", usersTypes);
+        return "admin/add-admin";
+    }
+
+
+    @PostMapping("/admin/addNewAdmin")
+    public String addNewAdmin(Model model, Users users) {
+        System.out.println("User:: " + users);
+        usersService.addNewUserByAdmin(users);
+        usersRepository.save(users);
+        return "redirect:/admin/admin-list";
+
+
+    }
+
+
+    // usuwanie admina
+    @GetMapping("/admin/delete-admin/confirm/{userId}")
+    public String deleteAdminConfirmation(@PathVariable("userId") int userId, Model model) {
+        Users user = usersService.getOne(userId);
+        System.out.println("-------**** POBRANE ID UZYTKOWNIKA: = " + userId + " ********************");
+        model.addAttribute("user", user);
+        return "/admin/delete-admin-confirmation";
+    }
+
+    @PostMapping("/admin/admin-delete/{userId}")
+    public String deleteAdmin(@PathVariable("userId") int userId) {
+        System.out.println("-------**** USUNIETE ID UZYTKOWNIKA: = " + userId + " *********************");
+        usersService.deleteUserById(userId);
+        return "redirect:/admin/admin-list";
+    }
 }
 
+
+
+//  List<UsersType> usersTypes = usersTypeService.getAllByUserTypeId(id);
+// model.addAttribute("getAllTypes", usersTypes);

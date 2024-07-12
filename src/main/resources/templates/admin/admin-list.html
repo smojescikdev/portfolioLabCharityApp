@@ -19,6 +19,17 @@
 <div th:insert="~{fragments/header :: header}"></div>
 <!--HEADER ENDED-->
 
+<div class="container align-items-center">
+    <h1>Admin menu</h1>
+
+    <a th:href="@{/admin/institutions-list}" class="btn btn-primary">Show Institutions List</a>
+    <a th:href="@{/admin/add}" class="btn btn-primary">Add Institution</a>
+
+    <a th:href="@{/admin/admin-list}" class="btn btn-primary">Show Admin List</a>
+    <a th:href="@{/admin/add-admin}" class="btn btn-primary">Add New Admin</a>
+
+</div>
+
 
 <div class="container">
     <h1>Lista adminów</h1>
@@ -26,25 +37,27 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>Name</th>
+            <th>Role</th>
+            <th>Name | Surname</th>
             <th>Email</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="admin : ${admins}">
-            <td th:text="${admin.userTypeId}"></td>
-<!--            <td th:text="${admin.name} + ' ' + ${admin.surname}"></td>-->
-<!--            <td th:text="${admin.email}"></td>-->
+        <tr th:each="user : ${users}" th:if="${user.userTypeId.userTypeId} == 2">
+            <td th:text="${user.userId}"></td>
+            <td th:text="${user.userTypeId.userTypeName}"></td>
+            <td th:text="${user.name + ' ' + user.surname}"></td>
+            <td th:text="${user.email}"></td>
             <td class="crud-buttons">
                 <div class="row">
                     <div class="col-md-6">
-                        <form th:action="@{/admin/delete/confirm/{id}(id=${admin.userTypeId})}" method="get">
+                        <form th:action="@{/admin/delete-admin/confirm/{id}(id=${user.userId})}" method="get">
                             <button class="btn-sec btn-black w-100" type="submit">Delete Admin</button>
                         </form>
                     </div>
                     <div class="col-md-6">
-                        <form th:action="@{/admin/edit/{id}(id=${admin.userTypeId})}" method="get">
+                        <form th:action="@{/admin/edit-admin/{id}(id=${user.userId})}" method="get">
                             <button class="btn-sec btn-red w-100" type="submit">Edit Admin</button>
                         </form>
                     </div>
@@ -54,6 +67,7 @@
         </tbody>
     </table>
 </div>
+
 
 
 <!--FOOTER-->
