@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Document</title>
+    <title>Panel dodawania fundacji</title>
     <link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
 </head>
 <body>
@@ -17,25 +17,27 @@
 
 
 <div class="container align-items-center">
-    <h1>Admin menu</h1>
+    <h1>Menu ADMINISTRATORA</h1>
+    <div class="ui-menu-divider">
+        <a th:href="@{/admin/institutions-list}" class="btn btn-primary">Pokaż listę fundacji</a>
+        <a th:href="@{/admin/add}" class="btn btn-primary">Dodaj fundacje</a>
+        <a th:href="@{/admin/admin-list}" class="btn btn-primary">Pokaż listę administratorów</a>
+        <a th:href="@{/admin/add-admin}" class="btn btn-primary">Dodaj nowego administratora</a>
 
-    <a th:href="@{/admin/institutions-list}" class="btn btn-primary">Show Institutions List</a>
-    <a th:href="@{/admin/add}" class="btn btn-primary">Add Institution</a>
-
-    <a th:href="@{/admin/admin-list}" class="btn btn-primary">Show Admin List</a>
-    <a th:href="@{/admin/add-admin}" class="btn btn-primary">Add New Admin</a>
-
+    </div>
 </div>
 
 
+<div class="container align-items-center">
+    <h2>Formularz dodawania fundacji: <br> </h2>
 <form id="job-main-form"
       th:action="${institution.id} == null ? @{/admin/addNewInstitution}"
       th:object="${institution}" method="post" class="job-add-form">
 
-    <label class="heading_font font_sub_heading_color">Institution Details</label>
+    <label class="h4">Szczegóły fundacji:</label>
     <div class="row">
         <div class="col-lg-12 form-group">
-            <input id="title" type="text" th:field="*{name}" class="form-control" placeholder="Institution Name"
+            <input id="title" type="text" th:field="*{name}" class="form-control" placeholder="Nazwa fundacji"
                    required>
         </div>
     </div>
@@ -43,8 +45,8 @@
 
     <div class="row">
         <div class="col-md-12 form-group">
-            <label class="mt-2 heading_font font_sub_heading_color">Description</label>
-            <textarea type="text" rows="4" id="content" placeholder="Description" class="form-control"
+            <label class="mt-2 heading_font font_sub_heading_color">Opis fundacji</label>
+            <textarea type="text" rows="4" id="content" placeholder="Wpisz opis fundacji" class="form-control"
                       th:field="*{description}" autocomplete="off" required></textarea>
         </div>
     </div>
@@ -52,11 +54,12 @@
 
     <div class="row mt-4">
         <div class="col d-flex justify-content-center">
-            <button type="submit" name="submit" class="btn btn-primary base_button px-4 py-2 mb-5">Add institution
+            <button type="submit" name="submit" class="btn btn-primary base_button px-4 py-2 mb-5">Dodaj fundacje
             </button>
         </div>
     </div>
 </form>
+</div>
 
 </body>
 

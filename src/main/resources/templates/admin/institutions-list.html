@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Document</title>
+    <title>Lista organizacji</title>
     <link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
 
 
@@ -21,29 +21,30 @@
 
 
 <div class="container align-items-center">
-    <h1>Admin menu</h1>
+    <h1>Menu ADMINISTRATORA</h1>
+<div class="ui-menu-divider">
+    <a th:href="@{/admin/institutions-list}" class="btn btn-primary">Pokaż listę fundacji</a>
+<!--    <a th:href="@{/admin/add}" class="btn btn-primary">Dodaj fundacje</a>-->
 
-    <a th:href="@{/admin/institutions-list}" class="btn btn-primary">Show Institutions List</a>
-    <a th:href="@{/admin/add}" class="btn btn-primary">Add Institution</a>
+    <a th:href="@{/admin/admin-list}" class="btn btn-primary">Pokaż listę administratorów</a>
+    <a th:href="@{/admin/add-admin}" class="btn btn-primary">Dodaj nowego administratora</a>
 
-    <a th:href="@{/admin/admin-list}" class="btn btn-primary">Show Admin List</a>
-    <a th:href="@{/admin/add-admin}" class="btn btn-primary">Add New Admin</a>
-
+</div>
 </div>
 
 
 
 <div class="container">
-    <h1>Institutions List</h1>
-    <a th:href="@{/admin/add}" class="btn btn-primary">Add Institution</a>
+    <h1>Menu fundacji</h1>
+    <a th:href="@{/admin/add}" class="btn btn-primary">Dodaj fundacje</a>
     <h3>Lista organizacji:</h3>
     <table class="table">
         <thead>
         <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Actions</th>
+            <th>Nazwa organizacji</th>
+            <th>Opis organizacji</th>
+            <th>Akcje</th>
         </tr>
         </thead>
         <tbody>
@@ -57,12 +58,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <form th:action="@{/admin/delete/confirm/{id}(id=${institution.id})}" method="get">
-                            <button class="btn-sec btn-black w-100" type="submit">Delete Institution</button>
+                            <button class="btn-sec btn-black w-100" type="submit">Usuń organizacje</button>
                         </form>
                     </div>
                     <div class="col-md-6">
                         <form th:action="@{/admin/edit/{id}(id=${institution.id})}" method="get">
-                            <button class="btn-sec btn-red w-100" type="submit">Edit Institution</button>
+                            <button class="btn-sec btn-red w-100" type="submit">Edytuj organizacje</button>
                         </form>
                     </div>
                 </div>

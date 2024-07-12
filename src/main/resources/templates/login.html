@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Document</title>
+    <title>Panel logowania</title>
     <link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
 </head>
 <body>
@@ -16,10 +16,11 @@
 
 
 <section class="login-page">
+    <h1>Panel logowania</h1>
     <h2>Zaloguj się</h2>
     <form th:action="@{/login}" th:object="${user}" method="post">
         <div class="form-group">
-            <input  placeholder="Email"
+            <input  placeholder="Adres email"
                     name="username"
                     field="{email}"
                     type="email"

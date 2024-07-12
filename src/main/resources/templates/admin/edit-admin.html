@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Edit Admin</title>
+    <title>Formularz edycji administratora</title>
     <link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
 </head>
 <body>
@@ -15,18 +15,19 @@
 
 
 <div class="container align-items-center">
-    <h1>Admin menu</h1>
+    <h1>Menu ADMINISTRATORA</h1>
+    <div class="ui-menu-divider">
+        <a th:href="@{/admin/institutions-list}" class="btn btn-primary">Pokaż listę fundacji</a>
+        <a th:href="@{/admin/add}" class="btn btn-primary">Dodaj fundacje</a>
+        <a th:href="@{/admin/admin-list}" class="btn btn-primary">Pokaż listę administratorów</a>
+        <a th:href="@{/admin/add-admin}" class="btn btn-primary">Dodaj nowego administratora</a>
 
-    <a th:href="@{/admin/institutions-list}" class="btn btn-primary">Show Institutions List</a>
-    <a th:href="@{/admin/add}" class="btn btn-primary">Add Institution</a>
-
-    <a th:href="@{/admin/admin-list}" class="btn btn-primary">Show Admin List</a>
-    <a th:href="@{/admin/add-admin}" class="btn btn-primary">Add New Admin</a>
-
+    </div>
 </div>
 
 
-
+<div class="container align-items-center">
+    <h2>Formularz edycji administratora: <br> </h2>
 
 <form id="admin-form" th:action="@{/admin/editAdmin}" th:object="${user}" method="post" class="admin-edit-form">
     <input type="hidden" th:field="*{userId}"/>
@@ -34,14 +35,14 @@
     <div class="row">
         <div class="col-lg-12 form-group">
             <label class="heading_font font_sub_heading_color">Admin Name</label>
-            <input id="name" type="text" th:field="*{name}" class="form-control" placeholder="Admin Name" required>
+            <input id="name" type="text" th:field="*{name}" class="form-control" placeholder="Imię administratora" required>
         </div>
     </div>
 
     <div class="row">
         <div class="col-lg-12 form-group">
             <label class="heading_font font_sub_heading_color">Admin Surname</label>
-            <input id="surname" type="text" th:field="*{surname}" class="form-control" placeholder="Admin Surname" required>
+            <input id="surname" type="text" th:field="*{surname}" class="form-control" placeholder="Nazwisko administratora" required>
         </div>
     </div>
 
@@ -57,16 +58,17 @@
     <div class="row">
         <div class="col-lg-12 form-group">
             <label class="heading_font font_sub_heading_color"></label>
-            <input type="hidden" id="password" th:field="*{password}" class="form-control" placeholder="Admin Password">
+            <input type="hidden" id="password" th:field="*{password}" class="form-control" placeholder="Hasło administratora">
         </div>
     </div>
 
     <div class="row mt-4">
         <div class="col d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary px-4 py-2">Save Changes</button>
+            <button type="submit" class="btn btn-primary px-4 py-2">Zapisz zmiany</button>
         </div>
     </div>
 </form>
+</div>
 
 <!-- FOOTER -->
 <div th:insert="~{fragments/footer :: footer}"></div>

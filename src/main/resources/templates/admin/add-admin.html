@@ -16,17 +16,18 @@
 
 
 <div class="container align-items-center">
-    <h1>Admin menu</h1>
+    <h1>Menu ADMINISTRATORA</h1>
+    <div class="ui-menu-divider">
+        <a th:href="@{/admin/institutions-list}" class="btn btn-primary">Pokaż listę fundacji</a>
+        <a th:href="@{/admin/add}" class="btn btn-primary">Dodaj fundacje</a>
+        <a th:href="@{/admin/admin-list}" class="btn btn-primary">Pokaż listę administratorów</a>
+        <a th:href="@{/admin/add-admin}" class="btn btn-primary">Dodaj nowego administratora</a>
 
-    <a th:href="@{/admin/institutions-list}" class="btn btn-primary">Show Institutions List</a>
-    <a th:href="@{/admin/add}" class="btn btn-primary">Add Institution</a>
-
-    <a th:href="@{/admin/admin-list}" class="btn btn-primary">Show Admin List</a>
-    <a th:href="@{/admin/add-admin}" class="btn btn-primary">Add New Admin</a>
-
+    </div>
 </div>
 
-
+<div class="container align-items-center">
+    <h2>Formularz dodawania administratora: <br> </h2>
 <label class="heading_font font_sub_heading_color">Add admin form</label>
 <form th:action="@{/admin/addNewAdmin}"
       th:object="${users}"
@@ -79,6 +80,7 @@
         <button type="submit" class="btn">Dodaj ADMINISTRATORA</button>
     </div>
 </form>
+</div>
 
 
 </body>

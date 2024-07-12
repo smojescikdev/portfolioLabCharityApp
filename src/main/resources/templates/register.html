@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Document</title>
+    <title>Panel rejestracji</title>
     <link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
 </head>
 <body>
@@ -16,13 +16,14 @@
 
 
 <section class="login-page">
+    <h1>Panel rejestracji</h1>
     <h2>Załóż konto</h2>
     <form th:action="@{/register/new}"
           th:object="${user}"
           method="post">
 
         <div class="form-group">
-            <input placeholder="E-mail"
+            <input placeholder="Adres e-mail"
                    name="email"
                    th:field="*{email}"
                    type="email"
@@ -38,7 +39,7 @@
                    required/>
         </div>
         <div class="form-group">
-            <input type="password" name="password2" placeholder="password2-not-working"/>
+            <input type="password" name="password2" placeholder="*password2*"/>
         </div>
 
         <!--//test-->

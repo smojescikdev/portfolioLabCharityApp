@@ -4,11 +4,11 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Document</title>
+    <title>Lista administratorów</title>
     <link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
 
 
-    <title>Lista adminów</title>
+    <title>Lista administratorów</title>
 
 
 </head>
@@ -20,32 +20,34 @@
 <!--HEADER ENDED-->
 
 <div class="container align-items-center">
-    <h1>Admin menu</h1>
+    <h1>Menu ADMINISTRATORA</h1>
+    <div class="ui-menu-divider">
+        <a th:href="@{/admin/institutions-list}" class="btn btn-primary">Pokaż listę fundacji</a>
+        <a th:href="@{/admin/add}" class="btn btn-primary">Dodaj fundacje</a>
+        <a th:href="@{/admin/admin-list}" class="btn btn-primary">Pokaż listę administratorów</a>
+        <a th:href="@{/admin/add-admin}" class="btn btn-primary">Dodaj nowego administratora</a>
 
-    <a th:href="@{/admin/institutions-list}" class="btn btn-primary">Show Institutions List</a>
-    <a th:href="@{/admin/add}" class="btn btn-primary">Add Institution</a>
-
-    <a th:href="@{/admin/admin-list}" class="btn btn-primary">Show Admin List</a>
-    <a th:href="@{/admin/add-admin}" class="btn btn-primary">Add New Admin</a>
-
+    </div>
 </div>
 
 
 <div class="container">
-    <h1>Lista adminów</h1>
+    <h1>Lista administratorów</h1>
     <table class="table">
         <thead>
         <tr>
             <th>ID</th>
-            <th>Role</th>
-            <th>Name | Surname</th>
+            <th>Data rejestracji</th>
+            <th>Rola</th>
+            <th>Nazwisko | Imię </th>
             <th>Email</th>
-            <th>Actions</th>
+            <th>Akcje</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="user : ${users}" th:if="${user.userTypeId.userTypeId} == 2">
             <td th:text="${user.userId}"></td>
+            <td th:text="${user.registrationDate}"></td>
             <td th:text="${user.userTypeId.userTypeName}"></td>
             <td th:text="${user.name + ' ' + user.surname}"></td>
             <td th:text="${user.email}"></td>
@@ -53,12 +55,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <form th:action="@{/admin/delete-admin/confirm/{id}(id=${user.userId})}" method="get">
-                            <button class="btn-sec btn-black w-100" type="submit">Delete Admin</button>
+                            <button class="btn-sec btn-black w-100" type="submit">Usuń administratora</button>
                         </form>
                     </div>
                     <div class="col-md-6">
                         <form th:action="@{/admin/edit-admin/{id}(id=${user.userId})}" method="get">
-                            <button class="btn-sec btn-red w-100" type="submit">Edit Admin</button>
+                            <button class="btn-sec btn-red w-100" type="submit">Edytuj administratora</button>
                         </form>
                     </div>
                 </div>

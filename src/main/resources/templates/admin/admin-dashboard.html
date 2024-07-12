@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Document</title>
+    <title>Admin dashboard</title>
     <link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
 </head>
 <body>
@@ -13,16 +13,19 @@
 <!--  HEADER -->
 <div th:insert="~{fragments/header :: header}"></div>
 <!--HEADER ENDED-->
+<br>
+<h2>DASHBOARD ADMINISTRATORA</h2>
+<br>
 
 <div class="container align-items-center">
-    <h1>Admin menu</h1>
+    <h1>Menu ADMINISTRATORA</h1>
+    <div class="ui-menu-divider">
+        <a th:href="@{/admin/institutions-list}" class="btn btn-primary">Pokaż listę fundacji</a>
+        <a th:href="@{/admin/add}" class="btn btn-primary">Dodaj fundacje</a>
+        <a th:href="@{/admin/admin-list}" class="btn btn-primary">Pokaż listę administratorów</a>
+        <a th:href="@{/admin/add-admin}" class="btn btn-primary">Dodaj nowego administratora</a>
 
-    <a th:href="@{/admin/institutions-list}" class="btn btn-primary">Show Institutions List</a>
-    <a th:href="@{/admin/add}" class="btn btn-primary">Add Institution</a>
-
-    <a th:href="@{/admin/admin-list}" class="btn btn-primary">Show Admin List</a>
-    <a th:href="@{/admin/add-admin}" class="btn btn-primary">Add New Admin</a>
-
+    </div>
 </div>
 
 <!--FOOTER-->
