@@ -112,7 +112,7 @@ public class UsersController {
         return "admin/edit-admin";
     }
 
-
+//DTO**
     @PostMapping("/admin/editAdmin")
     public String editAdminPost(@Valid @ModelAttribute("user") Users user) {
         usersService.editUser(user);
@@ -150,14 +150,18 @@ public class UsersController {
     @GetMapping("/admin/delete-admin/confirm/{userId}")
     public String deleteAdminConfirmation(@PathVariable("userId") int userId, Model model) {
         Users user = usersService.getOne(userId);
-        System.out.println("-------**** POBRANE ID UZYTKOWNIKA: = " + userId + " ********************");
+
+        System.out.println("-------**** POBRANE ID UZYTKOWNIKA: = " + userId + " *****");
+
         model.addAttribute("user", user);
         return "/admin/delete-admin-confirmation";
     }
 
     @PostMapping("/admin/admin-delete/{userId}")
     public String deleteAdmin(@PathVariable("userId") int userId) {
-        System.out.println("-------**** USUNIETE ID UZYTKOWNIKA: = " + userId + " *********************");
+
+        System.out.println("-------**** USUNIETE ID UZYTKOWNIKA: = " + userId + " *******");
+
         usersService.deleteUserById(userId);
         return "redirect:/admin/admin-list";
     }

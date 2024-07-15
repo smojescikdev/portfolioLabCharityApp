@@ -19,7 +19,7 @@ public class UsersType {
 
     private String userTypeName;
 
-    @OneToMany(targetEntity = Users.class, mappedBy = "userTypeId", cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Users.class, mappedBy = "userTypeId")
     private List<Users> users;
 
 

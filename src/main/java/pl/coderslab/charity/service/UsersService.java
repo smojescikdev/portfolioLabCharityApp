@@ -75,10 +75,10 @@ public class UsersService {
 
         existingUser.setName(users.getName());
         existingUser.setSurname(users.getSurname());
-        // existingUser.setEmail(users.getEmail());
+     //   existingUser.setEmail(users.getEmail());
 
 
-        existingUser.setPassword(passwordEncoder.encode(users.getPassword()));
+        //existingUser.setPassword(passwordEncoder.encode(users.getPassword()));
 
         usersRepository.save(existingUser);
     }
@@ -98,13 +98,14 @@ public class UsersService {
 
 
     public void deleteUserById(int userId) {
-        usersRepository.deleteUserById(userId);
+        usersRepository.deleteById(userId);
     }
 
 
 //TO CHECK & DELETE
-    public Users getOne1(int userId) {
-        return usersRepository.findById(userId).orElse(null);
-    }
+//    public Users getOne1(int userId) {
+//        return usersRepository.getReferenceById(userId);
+//
+//    }
 }
 
