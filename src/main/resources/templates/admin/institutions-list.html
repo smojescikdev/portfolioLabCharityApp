@@ -22,14 +22,22 @@
 
 <div class="container align-items-center">
     <h1>Menu ADMINISTRATORA</h1>
-<div class="ui-menu-divider">
-    <a th:href="@{/admin/institutions-list}" class="btn btn-primary">Pokaż listę fundacji</a>
-<!--    <a th:href="@{/admin/add}" class="btn btn-primary">Dodaj fundacje</a>-->
+    <div class="ui-menu-divider">
+        <h3>Zarządzanie Fundacjami:</h3>
+        <a th:href="@{/admin/institutions-list}" class="btn btn-primary">Pokaż listę fundacji</a>
+        <a th:href="@{/admin/add}" class="btn btn-primary">Dodaj fundacje</a>
+    </div>
+    <div class="ui-menu-divider">
+        <h3>Zarządzanie Administratorami:</h3>
+        <a th:href="@{/admin/admin-list}" class="btn btn-primary">Pokaż listę administratorów</a>
+        <a th:href="@{/admin/add-admin}" class="btn btn-primary">Dodaj nowego administratora</a>
+    </div>
+    <div class="ui-menu-divider">
+        <h3>Zarządzanie Użytkownikami:</h3>
+        <a th:href="@{/admin/user-list}" class="btn btn-primary">Lista użytkowników</a>
+        <a th:href="@{/admin/add-user}" class="btn btn-primary">Dodawanie użytkownika</a>
+    </div>
 
-    <a th:href="@{/admin/admin-list}" class="btn btn-primary">Pokaż listę administratorów</a>
-    <a th:href="@{/admin/add-admin}" class="btn btn-primary">Dodaj nowego administratora</a>
-
-</div>
 </div>
 
 

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.coderslab.charity.converter.UserConverter;
+import pl.coderslab.charity.dto.UserDTO;
 import pl.coderslab.charity.model.Users;
 import pl.coderslab.charity.model.UsersType;
 import pl.coderslab.charity.repository.UsersRepository;
@@ -20,6 +22,7 @@ import pl.coderslab.charity.service.UsersService;
 import pl.coderslab.charity.service.UsersTypeService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class UsersController {
@@ -112,7 +115,7 @@ public class UsersController {
         return "admin/edit-admin";
     }
 
-//DTO**
+    //DTO**
     @PostMapping("/admin/editAdmin")
     public String editAdminPost(@Valid @ModelAttribute("user") Users user) {
         usersService.editUser(user);
@@ -165,9 +168,77 @@ public class UsersController {
         usersService.deleteUserById(userId);
         return "redirect:/admin/admin-list";
     }
-}
-
 
 
 //  List<UsersType> usersTypes = usersTypeService.getAllByUserTypeId(id);
 // model.addAttribute("getAllTypes", usersTypes);
+
+
+//user management
+
+    //lista użytkowników o id = 1
+    @GetMapping("/admin/user-list")
+    public String listUsersWithUserType1(Model model) {
+        Integer userTypeId = 1;
+
+        List<UserDTO> userDTOs = usersService.findAll().stream()
+                .filter(user -> user.getUserTypeId().getUserTypeId() == userTypeId)
+                .map(user -> {
+                    UsersType userType = usersTypeService.getAllByUserTypeId(user.getUserTypeId().getUserTypeId())
+                            .stream()
+                            .findFirst()
+                            .orElse(null);
+                    return UserConverter.convertToDTO(user, userType);
+                })
+                .collect(Collectors.toList());
+
+        model.addAttribute("users", userDTOs);
+        return "admin/user-list";
+    }
+
+    // usuwanie użytkownika
+    @GetMapping("/admin/delete-user/confirm/{userId}")
+    public String deleteUserConfirmation(@PathVariable("userId") int userId, Model model) {
+        Users user = usersService.getOne(userId);
+
+        System.out.println("-------**** POBRANE ID UZYTKOWNIKA: = " + userId + " *****");
+
+        model.addAttribute("user", user);
+        return "/admin/delete-user-confirmation";
+    }
+
+    @PostMapping("/admin/user-delete/{userId}")
+    public String deleteUser(@PathVariable("userId") int userId) {
+
+        System.out.println("-------**** USUNIETE ID UZYTKOWNIKA: = " + userId + " *******");
+
+        usersService.deleteUserById(userId);
+        return "redirect:/admin/user-list";
+    }
+
+
+   //dodawanie usera
+    @GetMapping("/admin/add-user")
+    public String addUser(Model model) {
+        model.addAttribute("users", new Users());
+
+        model.addAttribute("user", usersService.getCurrentUser());
+
+        List<UsersType> usersTypes = usersTypeService.getAllUsersTypes();
+        model.addAttribute("getAllTypes", usersTypes);
+        return "admin/add-user";
+    }
+
+
+    @PostMapping("/admin/addNewUser")
+    public String addNewUser(Model model, Users users) {
+        System.out.println("User:: " + users);
+        usersService.addNewUserByAdmin1(users);
+        usersRepository.save(users);
+        return "redirect:/admin/user-list";
+
+
+    }
+
+
+}

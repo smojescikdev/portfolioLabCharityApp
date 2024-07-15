@@ -29,4 +29,6 @@ public class UsersTypeService {
     public List<UsersType> getAllByUserTypeId(Integer userTypeId) {
         return usersTypeRepository.findAllByUserTypeId(userTypeId);
     }
+
+
 }

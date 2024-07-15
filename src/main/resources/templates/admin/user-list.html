@@ -41,44 +41,50 @@
 
 
 <div class="container">
-    <h1>Lista administratorów</h1>
+    <h1>Lista użytkowników</h1>
     <table class="table">
         <thead>
         <tr>
-            <th>ID</th>
-            <th>Data rejestracji</th>
-            <th>Rola</th>
-            <th>Nazwisko | Imię </th>
-            <th>Email</th>
-            <th>Akcje</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="user : ${users}" th:if="${user.userTypeId.userTypeId} == 2">
-            <td th:text="${user.userId}"></td>
-            <td th:text="${user.registrationDate}"></td>
-            <td th:text="${user.userTypeId.userTypeName}"></td>
-            <td th:text="${user.name + ' ' + user.surname}"></td>
-            <td th:text="${user.email}"></td>
-            <td class="crud-buttons">
-                <div class="row">
-                    <div class="col-md-6">
-                        <form th:action="@{/admin/delete-admin/confirm/{id}(id=${user.userId})}" method="get">
-                            <button class="btn-sec btn-black w-100" type="submit">Usuń administratora</button>
-                        </form>
-                    </div>
-                    <div class="col-md-6">
-                        <form th:action="@{/admin/edit-admin/{id}(id=${user.userId})}" method="get">
-                            <button class="btn-sec btn-red w-100" type="submit">Edytuj administratora</button>
-                        </form>
-                    </div>
+        <th>ID użytkownika</th>
+        <th>Email</th>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Aktywny</th>
+        <th>Data rejestracji</th>
+        <th>ID roli użytkownika</th>
+        <th>Rola</th>
+        <th>Akcje</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.userId}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.surname}"></td>
+        <td th:text="${user.isActive}"></td>
+        <td th:text="${user.registrationDate}"></td>
+
+        <td th:text="${user.userTypeId}"></td>
+        <td th:text="${user.userTypeName}"></td>
+        <td class="crud-buttons">
+            <div class="row">
+                <div class="col-md-6">
+                    <form th:action="@{/admin/delete-admin/confirm/{id}(id=${user.userId})}" method="get">
+                        <button class="btn-sec btn-black w-100" type="submit">Usuń użytkownika</button>
+                    </form>
                 </div>
-            </td>
-        </tr>
-        </tbody>
+                <div class="col-md-6">
+                    <form th:action="@{/admin/edit-admin/{id}(id=${user.userId})}" method="get">
+                        <button class="btn-sec btn-red w-100" type="submit">Edytuj użytkownika</button>
+                    </form>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
     </table>
 </div>
-
 
 
 <!--FOOTER-->

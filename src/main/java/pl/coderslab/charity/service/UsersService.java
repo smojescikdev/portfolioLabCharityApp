@@ -97,6 +97,20 @@ public class UsersService {
     }
 
 
+
+    //dodawanie uzytkownika przez admina
+    public void addNewUserByAdmin1(Users users) {
+        users.setActive(true);
+        users.setRegistrationDate(new Date(System.currentTimeMillis()));
+        users.setEmail(users.getEmail());
+        users.setPassword(passwordEncoder.encode(users.getPassword()));
+        users.setName(users.getName());
+        users.setSurname(users.getSurname());
+
+        Users savedUser = usersRepository.save(users);
+    }
+
+
     public void deleteUserById(int userId) {
         usersRepository.deleteById(userId);
     }
